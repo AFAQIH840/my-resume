@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Gaya pop-up login */
+        .login-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .selamat {
+            background: linear-gradient(45deg, #3498db, #00f7ff);
+            box-shadow: 5px 5px rgba(5, 13, 24, 0.08);
+            padding: 70px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            margin-top: 300px;
+            font-weight: 900;
+            font-size: 70px;
+        }
+
+        .login-form {
+            background: linear-gradient(45deg, #3498db, #00f7ff);
+            box-shadow: 4px 4px rgba(5, 13, 24, 0.08);
+            padding: 30px;
+            padding-right: 50px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: left;
+        }
+
+        .login-form h2 {
+            text-align: center;
+            color: #0c0238;
+        }
+
+        /* Tombol tampilkan / sembunyikan pop-up */
+        .show-login {
+            cursor: pointer;
+            color: blue;
+        }
+
+        /* Gaya pesan galat */
+        .error-message {
+            color: red;
+        }
+
+        /* Menyelaraskan username dan password */
+        .login-form label {
+            display: block;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Gaya tombol Login */
+        .login-form button {
+            width: 40%;
+            background: linear-gradient(45deg, #db0606, #ffd104);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-style: inset;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background: linear-gradient(45deg, #e44a4a, #ffe263);
+        }
+
+        .styled-input {
+            border: 1px solid #050202;
+            border-radius: 5px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+            margin-left: 90%;
+        }
+
+        a:hover {
+            color: #3498db;
+        }
+    </style>
+    <title>Halaman Utama</title>
+</head>
+<body>
+    <h1 class="selamat">Selamat Datang <br> di Halaman Utama</h1>
+    <button class="show-login">Tampilkan Pop-up Login</button>
+
+    <!-- Pop-up Login -->
+    <div class="login-popup" id="loginPopup">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form id="login-form">
+                <div class="error-message" id="errorMessage"></div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="styled-input">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="styled-input">
+                <button type="button" id="login-button">Login</button>
+            </form>
+            <a href="mailto:faqihthea11@gmail.com?subject=Permintaan%20Username%20dan%20Password&body=Silakan%20berikan%20kami%20username%20dan%20password%20Anda.">Daftar</a>
+        </div>
+    </div>
+
+
+    <script>
+        // Tampilkan atau sembunyikan pop-up login saat mengklik link
+        document.querySelector(".show-login").addEventListener("click", function () {
+            document.getElementById("loginPopup").style.display = "flex";
+        });
+
+        // Event listener untuk tombol Login
+        document.getElementById("login-button").addEventListener("click", function () {
+            checkLogin();
+        });
+
+        // Cek login
+        function checkLogin() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Ganti ini dengan pasangan nama pengguna dan kata sandi yang valid
+            var validUserPasswords = [
+              { username: "user1", password: "password" },
+              { username: "user2", password: "password" },
+              { username: "user3", password: "password" },
+              { username: "user4", password: "password" },
+              { username: "user5", password: "password" },
+              { username: "user6", password: "password" },
+              // Tambahkan lebih banyak pasangan nama pengguna dan kata sandi jika diperlukan
+            ];
+
+            var isValidLogin = false;
+
+            // Loop melalui daftar nama pengguna dan kata sandi yang valid
+            for (var i = 0; i < validUserPasswords.length; i++) {
+              if (username === validUserPasswords[i].username && password === validUserPasswords[i].password) {
+                isValidLogin = true;
+                break;
+              }
+            }
+
+            if (isValidLogin) {
+                alert("Login berhasil!");
+                document.getElementById("loginPopup").style.display = "none";
+
+                // Arahkan ke halaman index.html setelah login berhasil
+                window.location.href = "index.html";
+            } else {
+                document.getElementById("errorMessage").textContent = "Nama pengguna atau kata sandi salah.";
+            }
+        }
+    </script>
+</body>
+</html>

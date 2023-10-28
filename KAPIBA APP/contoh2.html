@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>KAPIBA APP</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    /* Your custom CSS styles here */
+    header {
+        background-color: #4CAF50;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+    }
+
+    section {
+        margin: 20px;
+    }
+
+    #quiz h3 {
+        margin-top: 20px;
+    }
+
+    #quiz ul {
+        list-style-type: none;
+    }
+
+    #quiz ul li {
+        margin: 10px;
+    }
+
+    #quiz-submit {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    #quiz-result {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <header id="header">
+    <!-- Header content -->
+  </header>
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="hero-container" style="text-align: left;">KAPIBA</h1>
+    <div class="hero-container" data-aos="fade-in">
+      <p>Belajar bersama kami? <span class="typed" data-typed-items="Mudah, interaktif, jadi jago, Happy"></span></p>
+    </div>
+  </section>
+  <main id="main">
+    <!-- Content section -->
+    <section id="quiz">
+      <h3>Kuis Bahasa Arab</h3>
+      <ul>
+        <li>
+          <label for="q1">Apa kata Bahasa Arab untuk "rumah"?</label>
+          <input type="radio" id="q1" name="q1" value="a"> Bayt
+          <input type="radio" id="q1" name="q1" value="b"> Maghrib
+          <input type="radio" id="q1" name="q1" value="c"> Masjid
+        </li>
+        <li>
+          <label for="q2">Apa arti kata "salam" dalam Bahasa Arab?</label>
+          <input type="radio" id="q2" name="q2" value="a"> Makan
+          <input type="radio" id="q2" name="q2" value="b"> Damai
+          <input type="radio" id="q2" name="q2" value="c"> Buku
+          
+        </li>
+      </ul>
+      <button id="quiz-submit">Submit</button>
+      <p id="quiz-result"></p>
+    </section>
+  </main>
+  <!-- Your custom JavaScript here -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // JavaScript code to make the quiz interactive
+      const quizSubmitButton = document.getElementById("quiz-submit");
+      const quizResult = document.getElementById("quiz-result");
+
+      quizSubmitButton.addEventListener("click", function () {
+          // Get selected answers
+          const answer1 = document.querySelector("input[name='q1']:checked");
+          const answer2 = document.querySelector("input[name='q2']:checked");
+
+          // Check answers
+          if (!answer1 || !answer2) {
+              quizResult.textContent = "Silakan jawab semua pertanyaan.";
+          } else {
+              const result = calculateQuizResult(answer1.value, answer2.value);
+              quizResult.textContent = `Hasil: ${result}%`;
+          }
+      });
+
+      function calculateQuizResult(answer1, answer2) {
+          // Customize this function to calculate the quiz result based on correct answers
+          const correctAnswers = ["a", "b"];
+          const userAnswers = [answer1, answer2];
+          let correctCount = 0;
+
+          for (let i = 0; i < correctAnswers.length; i++) {
+              if (userAnswers[i] === correctAnswers[i]) {
+                  correctCount++;
+              }
+          }
+
+          return (correctCount / correctAnswers.length) * 100;
+      }
+    });
+  </script>
+</body>
+</html>
